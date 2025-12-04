@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Moderne responsive Demo-Website — Template" />
+  <title>Meine Website — Demo</title>
+
+  <!-- CSS: einfache, moderne Gestaltung mit Variablen -->
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#5eead4;
+      --accent-2:#60a5fa;
+      --text:#e6eef8;
+      --radius:12px;
+      --container:1100px;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --gap:1.25rem;
+      font-synthesis: none;
+    }
+
+    /* Reset & base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #061224 0%, var(--bg) 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    a{color:var(--accent); text-decoration:none}
+    .container{max-width:var(--container); margin:0 auto; padding:2rem;}
+
+    /* Header / Nav */
+    header{
+      position:sticky; top:0; z-index:40;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(10,15,25,0.6), rgba(8,10,16,0.35));
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.8rem 1rem;}
+    .brand{display:flex; align-items:center; gap:0.75rem; font-weight:700; letter-spacing:0.2px;}
+    .brand .logo{
+      width:42px; height:42px; display:inline-grid; place-items:center;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#042024; font-weight:800; border-radius:10px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.5);
+    }
+
+    nav{display:flex; gap:1rem; align-items:center;}
+    .nav-links{display:flex; gap:0.5rem; align-items:center;}
+    .nav-links a{padding:0.45rem 0.7rem; border-radius:8px; color:var(--muted); font-weight:600; font-size:0.95rem}
+    .nav-links a:hover{color:var(--text); background:var(--glass);}
+
+    .cta{
+      padding:0.55rem 0.9rem; border-radius:10px; background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#062322; font-weight:700; box-shadow: 0 6px 22px rgba(96,165,250,0.12);
+      border:none; cursor:pointer;
+    }
+
+    /* Mobile nav button */
+    .menu-btn{display:none; background:none; border:1px solid rgba(255,255,255,0.03); padding:0.4rem; border-radius:8px; color:var(--muted);}
+    .menu-btn:active{transform:scale(0.98)}
+
+    /* Hero */
+    .hero{
+      padding:3.25rem 0; display:grid; grid-template-columns:1fr 420px; gap:2rem; align-items:center;
+    }
+    .hero-left h1{font-size:2.1rem; margin:0 0 0.5rem; line-height:1.05;}
+    .hero-left p{color:var(--muted); margin:0 0 1.25rem;}
+    .features{display:flex; gap:0.75rem; flex-wrap:wrap;}
+    .feature{
+      background:var(--card); padding:0.9rem; border-radius:12px; min-width:160px; box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    }
+    .hero-right{ background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:1.25rem; border-radius:16px; border:1px solid rgba(255,255,255,0.03) }
+
+    /* Cards / Sections */
+    section.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;}
+    .card{background:var(--card); padding:1rem; border-radius:14px; border:1px solid rgba(255,255,255,0.02);}
+    .card h3{margin:0 0 0.5rem;}
+
+    /* Contact form */
+    form{display:grid; gap:0.75rem;}
+    input, textarea, button{
+      border-radius:10px; padding:0.75rem; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text);
+      font:inherit;
+    }
+    input::placeholder, textarea::placeholder{color:rgba(255,255,255,0.35)}
+    .row{display:flex; gap:0.5rem;}
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr; padding:2rem 0}
+      section.cards{grid-template-columns:repeat(2,1fr)}
+      .nav-links{display:none}
+      .menu-btn{display:inline-block}
+    }
+    @media (max-width:560px){
+      section.cards{grid-template-columns:1fr}
+      .brand .logo{width:38px;height:38px}
+    }
+
+    /* Footer */
+    footer{padding:2rem 0; color:var(--muted); border-top:1px solid rgba(255,255,255,0.02)}
+    .small{font-size:0.9rem;color:var(--muted)}
+    /* subtle focus styles */
+    :focus{outline:3px solid rgba(94,234,212,0.12); outline-offset:3px; border-radius:8px}
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">M</div>
+        <div>
+          <div style="font-size:0.95rem">Meine</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:-2px">Demo-Website</div>
+        </div>
+      </div>
+
+      <nav role="navigation" aria-label="Hauptmenü">
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Preise</a>
+          <a href="#contact">Kontakt</a>
+        </div>
+
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Menü öffnen">
+          ☰
+        </button>
+
+        <a class="cta" href="#contact">Kostenlos testen</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="container hero" aria-labelledby="heroTitle">
+      <div class="hero-left">
+        <h1 id="heroTitle">Schnell. Modern. Zugänglich.</h1>
+        <p>Dieses Template zeigt eine einfache, responsive und barrierearme Website-Struktur. Passe Texte, Farben oder Abschnitte nach Belieben an.</p>
+
+        <div class="features" id="features">
+          <div class="feature" role="article" aria-label="Responsiv">Responsiv — funktioniert auf Mobil & Desktop</div>
+          <div class="feature" role="article" aria-label="Barrierefrei">Barrierefreundlich — semantische HTML-Elemente</div>
+          <div class="feature" role="article" aria-label="Anpassbar">Einfach anpassbar — CSS-Variablen</div>
+        </div>
+
+        <p style="margin-top:1rem">
+          <a href="#pricing">Unsere Preise</a> • <a href="#contact">Kontakt</a>
+        </p>
+      </div>
+
+      <aside class="hero-right" aria-label="Kurzübersicht">
+        <h3 style="margin-top:0">Kurzüberblick</h3>
+        <p class="small" style="margin-top:0">Perfekt als Ausgangspunkt für persönliche Seiten, Portfolios oder kleine Firmenpräsenzen.</p>
+
+        <div style="margin-top:1rem">
+          <div style="display:flex;gap:0.6rem;align-items:center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <div style="font-weight:700">Schneller Start</div>
+              <div class="small">Einfach kopieren & anpassen.</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="container" aria-labelledby="servicesTitle" style="padding-top:0">
+      <h2 id="servicesTitle" style="margin-bottom:0.75rem">Was du bekommst</h2>
+      <div class="cards" role="list" aria-label="Dienstleistungen">
+        <article class="card" role="listitem">
+          <h3>Design</h3>
+          <p class="small">Zeitgemäßes, klares Layout — mobile-first.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <h3>Performance</h3>
+          <p class="small">Leichtgewichtig, lädt schnell und ist SEO-freundlich.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <h3>Support</h3>
+          <p class="small">Kommentare im Code mit Anpassungsbeispielen.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pricing" class="container" style="padding-top:1.25rem">
+      <h2>Preise</h2>
+      <p class="small">Dieses Demo-Template ist kostenlos — verwende es für Tests oder als Basis.</p>
+
+      <div style="display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap;">
+        <div class="card" style="flex:1;min-width:220px">
+          <h3>Basis</h3>
+          <p class="small">Nur das Template, keine Extras.</p>
+          <p style="font-weight:800">€0</p>
+          <button class="cta" onclick="location.hash='contact'">Loslegen</button>
+        </div>
+
+        <div class="card" style="flex:1;min-width:220px">
+          <h3>Pro</h3>
+          <p class="small">Design- & Inhaltshilfe (Beispiel).</p>
+          <p style="font-weight:800">€99</p>
+          <button class="cta" onclick="location.hash='contact'">Anfragen</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container" style="padding-top:1.5rem;padding-bottom:2.5rem" aria-labelledby="contactTitle">
+      <h2 id="contactTitle">Kontakt</h2>
+      <p class="small">Schreib uns eine kurze Nachricht — das Formular validiert einfach im Browser.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 360px; gap:1rem; margin-top:1rem;">
+        <form id="contactForm" aria-label="Kontaktformular" novalidate>
+          <label>
+            <span class="small">Name</span><br>
+            <input id="name" name="name" type="text" placeholder="Dein Name" required />
+          </label>
+
+          <label>
+            <span class="small">E-Mail</span><br>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required />
+          </label>
+
+          <label>
+            <span class="small">Nachricht</span><br>
+            <textarea id="message" name="message" rows="6" placeholder="Kurze Nachricht..." required></textarea>
+          </label>
+
+          <div style="display:flex;gap:0.5rem;align-items:center">
+            <button type="submit" class="cta">Absenden</button>
+            <button type="reset" style="background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--muted);padding:0.55rem 0.8rem;border-radius:10px">Zurücksetzen</button>
+          </div>
+
+          <div id="formMsg" role="status" aria-live="polite" style="margin-top:0.6rem;color:var(--accent);display:none"></div>
+        </form>
+
+        <aside style="background:var(--glass-2); padding:1rem; border-radius:12px; border:1px solid rgba(255,255,255,0.02)">
+          <h3 style="margin-top:0">Kontaktinfos</h3>
+          <p class="small" style="margin-bottom:0.5rem">E-Mail: <a href="mailto:info@beispiel.de">info@beispiel.de</a></p>
+          <p class="small">Adresse: Musterstraße 1, 10115 Berlin</p>
+          <div style="height:10px"></div>
+          <p class="small">Oder schreib uns direkt — wir melden uns in der Regel innerhalb von 1–2 Werktagen.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" role="contentinfo">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+      <div class="small">© <span id="year"></span> Meine Demo-Website — Alle Rechte vorbehalten.</div>
+      <div class="small">Datenschutz • Impressum</div>
+    </div>
+  </footer>
+
+  <!-- JavaScript: kleine Interaktionen & Validierung -->
+  <script>
+    // Jahr automatisch einsetzen
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn?.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      // einfache Toggle-Logik für kleine Bildschirme:
+      if (window.innerWidth <= 920) {
+        navLinks.style.display = expanded ? 'none' : 'flex';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.background = 'linear-gradient(180deg, rgba(10,15,25,0.9), rgba(8,10,16,0.95))';
+        navLinks.style.padding = '0.75rem';
+        navLinks.style.borderRadius = '10px';
+      } else {
+        navLinks.style.display = 'flex';
+      }
+    });
+
+    // Einfache Formular-Validierung + Demo-Submit (client-side only)
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formMsg.style.display = 'none';
+      // einfache Checks
+      const name = form.elements['name'].value.trim();
+      const email = form.elements['email'].value.trim();
+      const message = form.elements['message'].value.trim();
+
+      if (!name || !email || !message) {
+        showMessage('Bitte fülle alle Felder aus.', false);
+        return;
+      }
+      // einfacher Email-RegEx (nicht 100% perfekt, aber ausreichend)
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!emailOk) {
+        showMessage('Bitte gib eine gültige E-Mail-Adresse ein.', false);
+        return;
+      }
+
+      // Simulierter Absendevorgang (kein Server hier)
+      showMessage('Danke! Deine Nachricht wurde (simuliert) gesendet — dies ist ein Demo-Template.', true);
+      form.reset();
+    });
+
+    function showMessage(text, success){
+      formMsg.textContent = text;
+      formMsg.style.display = 'block';
+      formMsg.style.color = success ? 'var(--accent)' : '#ffb3b3';
+      // optional: nach 6s ausblenden
+      setTimeout(()=>{ formMsg.style.display = 'none'; }, 6000);
+    }
+
+    // Accessibility: schließe Menü wenn Fenster größer wird
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 920) {
+        navLinks.style.display = 'flex';
+      } else {
+        navLinks.style.display = 'none';
+        menuBtn?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Initiales Layout für kleine Bildschirme
+    if (window.innerWidth <= 920) {
+      navLinks.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
